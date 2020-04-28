@@ -1,0 +1,330 @@
+Company: 
+-- Engineer: 
+-- 
+-- Create Date: 09/05/2016 09:01:18 PM
+-- Design Name: 
+-- Module Name: Viterbidecoder - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
+----------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity Viterbidecoder is
+    Port ( recseq : in STD_LOGIC_VECTOR (3 downto 0);
+           clk : in STD_LOGIC;
+           led : out STD_LOGIC_VECTOR (7 downto 1));
+end Viterbidecoder;
+
+architecture Behavioral of Viterbidecoder is
+begin
+process(clk,recseq)
+begin
+if(clk'event  and clk='1') then
+case recseq is
+when "1101" =>led<= "1100001";
+when "1100" =>led<= "0100010";
+when "0110" =>led<= "1100011";
+when "0011" =>led<= "0000100";
+when "1110" =>led<= "1000101";
+when others =>null;
+end case;
+end if;
+end process;
+
+end Behavioral;
+
+2)library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity Vdecoder is
+    Port ( clk : in STD_LOGIC;
+           recseq : in STD_LOGIC_VECTOR(8 downto 0);
+           mlseq : inout STD_LOGIC_VECTOR(8 downto 0);
+           decseq : out STD_LOGIC_VECTOR (2 downto 0);
+           PMA : out STD_LOGIC_VECTOR (1 downto 0));
+end Vdecoder;
+
+architecture Behavioral of Vdecoder is
+begin
+process(clk,recseq,mlseq)
+begin
+if (clk'event and clk='1') then
+case recseq is
+when "110100011" =>decseq<= "110";
+mlseq<=recseq;PMA<="00";
+when "111001101" =>decseq<= "101";
+mlseq<=recseq;PMA<="00";
+when "101001010" =>decseq<= "100";
+mlseq<=recseq;PMA<="11";
+when others=> null;
+end case;
+end if;
+end process;
+end Behavioral;
+
+3)Company: 
+-- Engineer: 
+-- 
+-- Create Date: 09/23/2016 07:35:21 PM
+-- Design Name: 
+-- Module Name: Vdecoder - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
+----------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity Vdecoder is
+    Port ( clk : in STD_LOGIC;
+           recseq : in STD_LOGIC_VECTOR(8 downto 0);
+           mlseq : inout STD_LOGIC_VECTOR(8 downto 0);
+           decseq : out STD_LOGIC_VECTOR (2 downto 0);
+           PMA : out STD_LOGIC_VECTOR (1 downto 0));
+end Vdecoder;
+
+architecture Behavioral of Vdecoder is
+begin
+process(clk,recseq,mlseq)
+begin
+if (clk'event and clk='1') then
+case recseq is
+when "110100011" =>decseq<= "110";
+mlseq<=recseq;PMA<="00";
+when "111001101" =>decseq<= "101";
+mlseq<=recseq;PMA<="00";
+when "101001010" =>decseq<= "100";
+mlseq<=recseq;PMA<="11";
+when others=> null;
+end case;
+end if;
+end process;
+end Behavioral;
+
+
+4) [Vivado 12-106] *** Exception: java.lang.NullPointerException (See C:/Users/dell/AppData/Roaming/Xilinx/Vivado/vivado_pid5156.debug)
+ [Vivado 12-106] *** Exception: java.lang.NullPointerException (See C:/Users/dell/AppData/Roaming/Xilinx/Vivado/vivado_pid5156.debug)
+ [Vivado 12-106] *** Exception: java.lang.NullPointerException (See C:/Users/dell/AppData/Roaming/Xilinx/Vivado/vivado_pid5156.debug)
+ [Vivado 12-106] *** Exception: java.lang.NullPointerException (See C:/Users/dell/AppData/Roaming/Xilinx/Vivado/vivado_pid5156.debug)
+5) [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_1/behav/xvhdl.log' file for more information.
+ [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+6)start_gui
+open_project C:/Users/dell/Desktop/Project/project_5/project_5.xpr
+open_project C:/Users/dell/Desktop/Project/project_5/project_5.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2016.1/data/ip'.
+open_project: Time (s): cpu = 00:00:21 ; elapsed = 00:00:26 . Memory (MB): peak = 782.703 ; gain = 133.246
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_2]
+file mkdir C:/Users/dell/Desktop/Project/project_5/project_5.srcs/sim_2/new
+close [ open C:/Users/dell/Desktop/Project/project_5/project_5.srcs/sim_2/new/Viter_tb.v w ]
+add_files -fileset sim_2 C:/Users/dell/Desktop/Project/project_5/project_5.srcs/sim_2/new/Viter_tb.v
+update_compile_order -fileset sim_2
+set_property SOURCE_SET sources_1 [get_filesets sim_2]
+close [ open C:/Users/dell/Desktop/Project/project_5/project_5.srcs/sim_2/new/viterbi_tb.v w ]
+add_files -fileset sim_2 C:/Users/dell/Desktop/Project/project_5/project_5.srcs/sim_2/new/viterbi_tb.v
+update_compile_order -fileset sim_2
+launch_simulation -simset sim_2
+INFO: [USF-XSim-27] Simulation object is 'sim_2'
+INFO: [USF-XSim-37] Inspecting design source files for 'Vdecoder' in fileset 'sim_2'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_2'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_2/behav'
+"xvhdl -m64 --relax -prj Vdecoder_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/dell/Desktop/Project/project_5/project_5.srcs/sources_1/new/Vdecoder.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity Vdecoder
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_2/behav'
+Vivado Simulator 2016.1
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2016.1/bin/unwrapped/win64.o/xelab.exe -wto af0d1b95065b47b1811ee4a82ffd3634 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot Vdecoder_behav xil_defaultlib.Vdecoder -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling architecture behavioral of entity xil_defaultlib.vdecoder
+Built simulation snapshot Vdecoder_behav
+
+****** Webtalk v2016.1 (64-bit)
+  **** SW Build 1538259 on Fri Apr  8 15:45:27 MDT 2016
+  **** IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+source C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_2/behav/xsim.dir/Vdecoder_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Sun Sep 25 02:04:13 2016...
+INFO: [USF-XSim-69] 'elaborate' step finished in '9' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_2/behav'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Vdecoder_behav -key {Behavioral:sim_2:Functional:Vdecoder} -tclbatch {Vdecoder.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2016.1
+Time resolution is 1 ps
+source Vdecoder.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Vdecoder_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:07 ; elapsed = 00:00:18 . Memory (MB): peak = 860.117 ; gain = 34.055
+set_property target_simulator VCS [current_project]
+set_property simulator_language Verilog [current_project]
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation -simset sim_2
+WARNING: [Vivado 12-3661] Failed to remove file:C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_2/behav/xelab.pb
+ERROR: [Vivado 12-3649] Simulation flow for 'VCS' simulator is not supported on this platform.
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+set_property target_simulator XSim [current_project]
+set_property simulator_language VHDL [current_project]
+launch_simulation -simset sim_2
+INFO: [USF-XSim-27] Simulation object is 'sim_2'
+INFO: [USF-XSim-37] Inspecting design source files for 'Vdecoder' in fileset 'sim_2'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_2'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_2/behav'
+"xvhdl -m64 --relax -prj Vdecoder_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/dell/Desktop/Project/project_5/project_5.srcs/sources_1/new/Vdecoder.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity Vdecoder
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_2/behav'
+Vivado Simulator 2016.1
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2016.1/bin/unwrapped/win64.o/xelab.exe -wto af0d1b95065b47b1811ee4a82ffd3634 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot Vdecoder_behav xil_defaultlib.Vdecoder -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling architecture behavioral of entity xil_defaultlib.vdecoder
+Built simulation snapshot Vdecoder_behav
+
+****** Webtalk v2016.1 (64-bit)
+  **** SW Build 1538259 on Fri Apr  8 15:45:27 MDT 2016
+  **** IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+source C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_2/behav/xsim.dir/Vdecoder_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Sun Sep 25 02:08:51 2016...
+INFO: [USF-XSim-69] 'elaborate' step finished in '4' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_2/behav'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Vdecoder_behav -key {Behavioral:sim_2:Functional:Vdecoder} -tclbatch {Vdecoder.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2016.1
+Time resolution is 1 ps
+source Vdecoder.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Vdecoder_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 860.117 ; gain = 0.000
+set_property source_mgmt_mode DisplayOnly [current_project]
+current_fileset -simset [ get_filesets sim_1 ]
+set_property top testbench_tw.vhd [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+set_property -name {xsim.simulate.runtime} -value {200ns} -objects [get_filesets sim_1]
+set_property simulator_language Verilog [current_project]
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'testbench_tw.vhd' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-100] Fetching design files from 'sources_1'...(this may take a while)...
+INFO: [USF-XSim-101] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_1/behav'
+"xvhdl -m64 --relax -prj testbench_tw.vhd_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/dell/Desktop/Project/project_5/project_5.srcs/sources_1/new/Vdecoder.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity Vdecoder
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/dell/Desktop/Project/project_5/project_5.srcs/sim_1/new/testbench_tw.vhd" into library xil_defaultlib
+ERROR: [VRFC 10-1412] syntax error near timescale [C:/Users/dell/Desktop/Project/project_5/project_5.srcs/sim_1/new/testbench_tw.vhd:1]
+INFO: [VRFC 10-240] VHDL file C:/Users/dell/Desktop/Project/project_5/project_5.srcs/sim_1/new/testbench_tw.vhd ignored due to errors
+7)INFO: [USF-XSim-99] Step results log file:'C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_1/behav/xvhdl.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_1/behav/xvhdl.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+8)add_files -fileset sim_2 C:/Users/dell/Desktop/Project/project_5/project_5.srcs/sim_2/new/Viter_tb.v
+[Vivado 12-106] *** Exception: java.lang.NullPointerException (See C:/Users/dell/AppData/Roaming/Xilinx/Vivado/vivado_pid5156.debug)
+launch_simulation
+[USF-XSim 62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/dell/Desktop/Project/project_5/project_5.sim/sim_1/behav/xvhdl.log' file for more information.
+[Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
